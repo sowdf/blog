@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/stylesheets/admin.css"/>
+</head>
+<body>
+    <div class="m_login">
+        <form method="post">
+            <div>
+                账号：<input type="text" name="name" id=""/>
+            </div>
+            <div>
+                密码：<input type="password" name="password"/>
+            </div>
+            <div class="m_btn">
+                <input type="submit" id="" value="登陆"/>
+            </div>
+        </form>
+        <div class="m_tips">
+            <% if(success){ %>
+            <span class="green"><%=success%></span>
+            <%}else{%>
+            <span class="red"><%=error%></span>
+            <%}%>
+        </div>
+    </div>
+</body>
+</html>

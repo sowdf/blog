@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/* reset */
+body, h1, h2, h3, h4, h5, p, dl, dd, ul, ol, form, input, textarea, th, td, select {
+  margin: 0;
+  padding: 0;
+}
+
+em {
+  font-style: normal;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: none;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input, textarea {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+}
+
+body {
+  font-size: 12px;
+  font-family: "΢���ź�";
+}
+
+.clear {
+  zoom: 1;
+}
+
+.clear:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/* end reset */
+.m_menu {
+  width: 100px;
+  height: 800px;
+  border: solid 1px #333;
+  margin-right: 20px;
+}
+.m_menu a {
+  display: block;
+  height: 40px;
+  color: #000;
+  text-align: center;
+  line-height: 40px;
+  border-bottom: 1px solid #333;
+}
+.m_menu a:hover, .m_menu .on {
+  background: red;
+  color: #fff;
+}
+
+.m_main {
+  width: 800px;
+  height: 800px;
+  border: solid 1px #333;
+}
+.m_main .m_tips {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+.m_main .m_tips .red {
+  color: red;
+}
+.m_main .m_tips .green {
+  color: green;
+}
+
+.m_post {
+  padding: 10px;
+}
+.m_post div {
+  margin-bottom: 15px;
+}
+.m_post .artical textarea {
+  resize: none;
+  width: 750px;
+  height: 500px;
+}

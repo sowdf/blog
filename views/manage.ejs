@@ -1,0 +1,17 @@
+<%- include header.ejs%>
+<% posts.forEach(function(post,manage){%>
+    <p> <%=post.title%></p>
+    <div class="info">
+        作者：<%=post.name%> <br/>
+        时间：<%=post.time.minute%>
+    </div>
+    <p><%-post.post%></p>
+    <%if(post.image){ %>
+        <div>
+            <img src="<%=JSON.parse(post.image).base64%>" alt="" />
+        </div>
+    <%}%>
+<%})%>
+
+
+<%-include footer.ejs%>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/stylesheets/manage.css"/>
+</head>
+<body>
+<div class="m_content clear">
+    <div class="m_menu fl">
+        <a href="/list">列表</a>
+        <a href="/post">发表</a>
+        <a href="/upload">上传图片</a>
+        <a href="/logout">退出</a>
+    </div>
+    <div class="m_main fl">
+        <div class="m_tips">
+            <% if(success){ %>
+                <span class="green"><%=success%></span>
+            <%}else{%>
+                <span class="red"><%=error%></span>
+            <%}%>
+        </div>
+
+
+

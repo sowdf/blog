@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/* reset */
+body, h1, h2, h3, h4, h5, p, dl, dd, ul, ol, form, input, textarea, th, td, select {
+  margin: 0;
+  padding: 0;
+}
+
+em {
+  font-style: normal;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: none;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input, textarea {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+}
+
+body {
+  font-size: 12px;
+  font-family: "΢���ź�";
+}
+
+.clear {
+  zoom: 1;
+}
+
+.clear:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+/* end reset */
+.m_login, .m_reg {
+  width: 200px;
+  height: 200px;
+  margin: 150px auto;
+}
+.m_login div, .m_reg div {
+  margin-bottom: 10px;
+}
+.m_login .m_btn, .m_reg .m_btn {
+  text-align: center;
+}
+
+.m_tips {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+.m_tips .red {
+  color: red;
+}
+.m_tips .green {
+  color: green;
+}
