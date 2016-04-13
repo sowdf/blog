@@ -1,5 +1,6 @@
 var Admin = require('../modules/admin'),
     Post = require('../modules/post'),
+    List = require('../modules/list'),
     crypto = require('crypto');
 
 /* GET home page. */
@@ -129,6 +130,27 @@ module.exports = function(app){
       res.redirect('/manage');
     });
   });
+  /* 获取列表文章 */
+  app.get('/list',checkLogin);
+  app.get('/list',function(req,res){
+    console.log(2);
+    var name = req.session.admin.name;
+    var newList = new List(name);
+    List.get(function(err,list){
+      if(err){
+        req.flash('error',err);
+        return res.redirect('/manage');
+      }
+      console.log(list);
+      res.render('list',{
+        title : '列表页',
+        list : list,
+        success : req.flash.success.toString(),
+        error : req.flash.error.toString()
+      })
+
+    });
+  })
   function checkLogin(req,res,next){
     if(!req.session.admin){
       req.flash('error','您尚未登录');
