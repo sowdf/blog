@@ -1,0 +1,14 @@
+<%include header.ejs%>
+<div class="m_artical">
+    <h3>
+        <%=post.title%>
+        <p>
+            作者：<span><%=post.name%></span>日期<%=post.time.day%>
+        </p>
+        <div>
+            <%=post.post%>
+            <img src="<%=JSON.parse(post.image).base64%>" alt="">
+        </div>
+    </h3>
+</div>
+<%include footer.ejs%>

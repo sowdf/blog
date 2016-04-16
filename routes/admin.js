@@ -156,11 +156,10 @@ module.exports = function(app){
 
     });
   });
-  app.get('/:day/:title/edit',checkLogin);
-  app.get('/:day/:title/edit',function(req,res){
+  app.get('/edit/:day/:title',checkLogin);
+  app.get('/edit/:day/:title',function(req,res){
     var currentAdmin = req.session.admin;
     List.edit(currentAdmin.name,req.params.day,req.params.title,function(err,doc){
-      console.log(doc);
       if(err){
         req.flash('error',err);
         return res.redirect('/list');
@@ -173,9 +172,53 @@ module.exports = function(app){
       })
     })
   });
-  app.post('/:day/:title/edit',checkLogin)
-  app.post('/:day/:title/edit',function(req,res){
-    var currentAdmin = req.session.admin;
+  app.post('/edit/:day/:title',checkLogin)
+  app.post('/edit/:day/:title',function(req,res){
+    var name = req.session.admin.name,
+        day = req.params.day,
+        title = req.params.title,
+        post = req.body.post;
+    var url = encodeURI('/article/'+ day +'/'+title);
+    List.update(name,day,title,post,function(err){
+      if(err){
+        req.flash('error',err);
+        return res.redirect('/list');
+      }
+      req.flash('success','保存成功！');
+      return res.redirect(url);
+    });
+  });
+  app.get('/article/:day/:title',checkLogin);
+  app.get('/article/:day/:title',function(req,res){
+    var name = req.session.admin.name,
+        day = req.params.day,
+        title = req.params.title;
+    Post.getOne(name,day,title,function(err,doc){
+      if(err){
+        req.flash('error',err);
+        return res.redirect('/list');
+      }
+      res.render('article',{
+        title : '文章内容',
+        post : doc,
+        success : req.flash('success').toString(),
+        error : req.flash('error').toString()
+      })
+    })
+  });
+  app.get('/remove/:day/:title',checkLogin);
+  app.get('/remove/:day/:title',function(req,res){
+    var name = req.session.admin.name,
+        day = req.params.day,
+        title = req.params.title;
+    List.remove(name,day,title,function(err){
+      if(err){
+        req.flash('error',err);
+        return res.redirect('/list');
+      }
+      req.flash('success','删除成功！');
+      res.redirect('/list');
+    })
   })
   function checkLogin(req,res,next){
     if(!req.session.admin){

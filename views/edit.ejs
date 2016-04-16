@@ -1,9 +1,9 @@
 <%include header.ejs%>
 
 <div class="m_edit">
-    <form method="post">
+    <form method="post" action="/edit/<%=post.time.day%>/<%=post.title%>">
         <p><%=post.title%></p>
-        作者：<span><%=post.name%></span> 日期：<span><%=post.time.day%></span>
+        作者：<span><%=post.title%></span> 日期：<span><%=post.time.day%></span>
         <div>
             <textarea name="post" id="" cols="30" rows="10">
                 <%=post.post%>

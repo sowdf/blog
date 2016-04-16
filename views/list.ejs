@@ -2,9 +2,9 @@
 <%list.forEach(function(list,index){%>
     <ul>
         <li>
-            <p><a href="/<%=list.name%>/<%= list.title %>"><%=list.title%></a></p>
+            <p><a href="/article/<%= list.time.day %>/<%=list.title%>"><%=list.title%></a></p>
             <div>
-                作者：<span><%=list.name%></span> 日期 <span><%=list.time.minute%></span> <a href="/<%=list.time.day%>/<%=list.title%>/edit">编辑</a><a href="#">删除</a>
+                作者：<span><%=list.name%></span> 日期 <span><%=list.time.minute%></span> <a href="/edit/<%=list.time.day%>/<%=list.title%>">编辑</a><a href="/remove/<%=list.time.day%>/<%=list.title%>">删除</a>
             </div>
         </li>
     </ul>
