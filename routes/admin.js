@@ -133,11 +133,11 @@ module.exports = function(app){
   /* 获取列表文章 */
   app.get('/list',checkLogin);
   app.get('/list',function(req,res){
-    console.log(2);
     var name = req.session.admin.name;
     var newList = new List(name);
-    List.get(function(err,list){
+    List.get(name,function(err,list){
       if(err){
+        console.log(err);
         req.flash('error',err);
         return res.redirect('/manage');
       }
@@ -145,12 +145,19 @@ module.exports = function(app){
       res.render('list',{
         title : '列表页',
         list : list,
-        success : req.flash.success.toString(),
-        error : req.flash.error.toString()
+        success : req.flash('success').toString(),
+        error : req.flash('error').toString()
       })
 
     });
-  })
+  });
+  app.get('/:name/:title/:day/edit',checkLogin);
+  app.get('/:name/:title/:day/edit',function(req,res){
+    var currentAdmin = req.session.admin;
+    Post.edit(currentAdmin.name,req.params.day,req.parms.title,function(err){
+
+    })
+  });
   function checkLogin(req,res,next){
     if(!req.session.admin){
       req.flash('error','您尚未登录');

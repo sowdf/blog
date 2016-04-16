@@ -1,11 +1,13 @@
-<!--
 <% include header.ejs%>
-<%list.forEach(list,function(list,index){%>
+<%list.forEach(function(list,index){%>
     <ul>
         <li>
-            <p><a href="">post</a></p>
+            <p><a href="/<%=list.name%>/<%= list.title %>"><%=list.title%></a></p>
+            <div>
+                作者：<span><%=list.name%></span> 日期 <span><%=list.time.minute%></span> <a href="">编辑</a><a href="#">删除</a>
+            </div>
         </li>
     </ul>
 <%})%>
 
-<% include footer.ejs%>-->
+<% include footer.ejs%>
