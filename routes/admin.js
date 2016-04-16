@@ -64,13 +64,20 @@ module.exports = function(app){
         return req.flash('error',err);
         return res.redirect('/admin');
       }
-      if(admin.password != password){
-        req.flash('error','密码错误！');
+      if(admin){
+        if(admin.password != password){
+          req.flash('error','密码错误！');
+          return res.redirect('/admin');
+        }
+        req.session.admin = admin;
+        req.flash('success','登陆成功！');
+        res.redirect('/manage');
+      }else{
+        req.flash('error','该账号不存在！');
         return res.redirect('/admin');
       }
-      req.session.admin = admin;
-      req.flash('success','登陆成功！');
-      res.redirect('/manage');
+
+
     })
   });
   app.get('/manage',checkLogin);
@@ -137,11 +144,9 @@ module.exports = function(app){
     var newList = new List(name);
     List.get(name,function(err,list){
       if(err){
-        console.log(err);
         req.flash('error',err);
         return res.redirect('/manage');
       }
-      console.log(list);
       res.render('list',{
         title : '列表页',
         list : list,
@@ -154,8 +159,16 @@ module.exports = function(app){
   app.get('/:name/:title/:day/edit',checkLogin);
   app.get('/:name/:title/:day/edit',function(req,res){
     var currentAdmin = req.session.admin;
-    Post.edit(currentAdmin.name,req.params.day,req.parms.title,function(err){
-
+    Post.edit(currentAdmin.name,req.params.day,req.parms.title,function(err,doc){
+      if(err){
+        req.flash('error',err);
+        return res.redirect('/list');
+      }
+      res.render('edit',{
+        post : doc,
+        success : req.flash('success').toString(),
+        error : req.flash('error').toString()
+      })
     })
   });
   function checkLogin(req,res,next){

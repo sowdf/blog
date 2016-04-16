@@ -29,7 +29,7 @@ List.get = function(name,callback){
         })
     })
 }
-Post.edit = function(name,day,title,callback){
+List.edit = function(name,day,title,callback){
     //打开数据库
     mongodb.open(function(er,db){
         if(err){
@@ -56,7 +56,7 @@ Post.edit = function(name,day,title,callback){
         })
     });
 }
-Post.update = function(name,day,title,post,callback){
+List.update = function(name,day,title,post,callback){
     //打开数据库
     mongodb.open(function(err,db){
         if(err){
@@ -83,7 +83,7 @@ Post.update = function(name,day,title,post,callback){
         })
     })
 }
-Post.remove = function(name,day,title,callback){
+List.remove = function(name,day,title,callback){
     //打开数据库
     mongodb.open(function(err,db){
         if(err){

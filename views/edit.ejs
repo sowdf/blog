@@ -1,11 +1,16 @@
 <%include header.ejs%>
 
 <div class="m_edit">
-    <p></p>
-    作者：<span></span> 日期：<span></span>
-    <div>
-        <textarea name="post" id="" cols="30" rows="10"></textarea>
-    </div>
+    <form method="post">
+        <p><%=post.title%></p>
+        作者：<span><%=post.name%></span> 日期：<span><%=post.time.day%></span>
+        <div>
+            <textarea name="post" id="" cols="30" rows="10">
+                <%=post.post%>
+            </textarea>
+        </div>
+    </form>
+
 </div>
 
 <%include footer.ejs%>
