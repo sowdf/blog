@@ -31,7 +31,7 @@ List.get = function(name,callback){
 }
 List.edit = function(name,day,title,callback){
     //打开数据库
-    mongodb.open(function(er,db){
+    mongodb.open(function(err,db){
         if(err){
             return callback(err);
         }
@@ -45,7 +45,7 @@ List.edit = function(name,day,title,callback){
             collection.findOne({
                 'name':name,
                 'time.day':day,
-                'title':tile
+                'title':title
             },function(err,doc){
                 mongodb.close();
                 if(err){

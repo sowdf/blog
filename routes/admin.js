@@ -156,21 +156,27 @@ module.exports = function(app){
 
     });
   });
-  app.get('/:name/:title/:day/edit',checkLogin);
-  app.get('/:name/:title/:day/edit',function(req,res){
+  app.get('/:day/:title/edit',checkLogin);
+  app.get('/:day/:title/edit',function(req,res){
     var currentAdmin = req.session.admin;
-    Post.edit(currentAdmin.name,req.params.day,req.parms.title,function(err,doc){
+    List.edit(currentAdmin.name,req.params.day,req.params.title,function(err,doc){
+      console.log(doc);
       if(err){
         req.flash('error',err);
         return res.redirect('/list');
       }
       res.render('edit',{
+        title : '编辑',
         post : doc,
         success : req.flash('success').toString(),
         error : req.flash('error').toString()
       })
     })
   });
+  app.post('/:day/:title/edit',checkLogin)
+  app.post('/:day/:title/edit',function(req,res){
+    var currentAdmin = req.session.admin;
+  })
   function checkLogin(req,res,next){
     if(!req.session.admin){
       req.flash('error','您尚未登录');
