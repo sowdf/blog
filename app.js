@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
-var routes = require('./routes/admin');
+var routeUser = require('./routes/user');
+var routeAdmin = require('./routes/admin');
 var settings = require('./settings');
 var flash = require('connect-flash');
 var multer = require('multer');
@@ -47,7 +47,8 @@ app.use(session({
   })
 }));
 
-routes(app);
+routeUser(app);
+routeAdmin(app);
 
 app.listen(app.get('port'),function(){
   console.log('express start on port '+ app.get('port'));
