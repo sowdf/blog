@@ -11,7 +11,7 @@ function init() {
       oImg.value = date;
       var html = '';
 
-      html = 'div class="cnt"><img src="' + base64 + '"><\/div>'
+      html = '<div class="cnt"><img src="' + base64 + '"><\/div>'
 
       document.querySelector('.imgzip').innerHTML = html;
     },

@@ -3,8 +3,27 @@ var Admin = require('../modules/admin'),
     List = require('../modules/list'),
     crypto = require('crypto');
 
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb){
+    cb(null, './public/images')
+  },
+  filename: function (req, file, cb){
+    var fileName = file.originalname;
+    var arr =fileName.split('.');
+    var time = new Date().getTime() + '.';
+    fileNmae = arr.join(time);
+    file.originalname = fileNmae;
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({
+  storage: storage
+});
+
 /* GET home page. */
 module.exports = function(app){
+
   app.get('/reg',checkNotLogin);
   app.get('/reg',function(req,res){
     res.render('reg',{title:'注册'})
@@ -110,7 +129,8 @@ module.exports = function(app){
     });
   });
   app.post('/upload', checkLogin);
-  app.post('/upload', function (req, res) {
+  app.post('/upload',upload.array('field1', 5), function (req, res) {
+    console.log(req.files);
     req.flash('success', '文件上传成功!');
     res.redirect('/upload');
   });
@@ -126,6 +146,7 @@ module.exports = function(app){
   app.post('/post',function(req,res){
     var currentAdmin = req.session.admin,
         post = new Post(currentAdmin.name,req.body.title,req.body.post,req.body.image);
+    console.log(req.files);
     post.save(function(err){
       if(err){
         req.flash('error',err);

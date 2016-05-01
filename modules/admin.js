@@ -31,8 +31,6 @@ Admin.prototype.save = function(callback){
                 if(err){
                     return callback(err);
                 }
-
-                console.log(arguments);
                 callback(null,admin[0]);
             })
         })

@@ -10,7 +10,6 @@ var routeUser = require('./routes/user');
 var routeAdmin = require('./routes/admin');
 var settings = require('./settings');
 var flash = require('connect-flash');
-var multer = require('multer');
 var app = express();
 
 // view engine setup
@@ -22,12 +21,18 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-multer({
-  dest : './public/images',
-  rename : function(fieldname,filename){
-    return fieldname;
-  }
-})
+/*multer({
+ dest : './public/images',
+ rename : function(fieldname,filename){
+     console.log(fieldname);
+     console.log(filename);
+ return fieldname;
+ }
+});*/
+
+
+
+
 app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -43,7 +48,7 @@ app.use(session({
     db:settings.db,
     host:settings.host,
     port:settings.port,
-    url:'mongodb://localhost/blog'
+    url:'mongodb://localhost/sowdf'
   })
 }));
 

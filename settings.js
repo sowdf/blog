@@ -1,6 +1,6 @@
 module.exports = {
-    cookieSecret : 'myblog',
-    db : 'blog',
+    cookieSecret : 'sowdf',
+    db : 'sowdf',
     host : 'localhost',
     port : 27017
 }
