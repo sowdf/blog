@@ -1,7 +1,7 @@
 <%- include header.ejs%>
 
 <div class="m_post">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="title">
             标题：<input type="text" name="title"/>
         </div>
@@ -10,7 +10,7 @@
             <textarea name="post" id="" cols="50" rows="40"></textarea>
         </div>
         <input type="hidden" name="image" id="j_img" value=""/>
-        <input type="file" accept="image/*;capture=camera" class="input">
+        <input type="file" accept="image/*;capture=camera" multiple name="field1" class="input">
         <div class="imgzip"></div>
         <div class="btn">
             <input type="submit" value="发表"/>

@@ -1,11 +1,12 @@
 var mongodb = require('./db'),
     markdown = require('markdown').markdown;
 
-function Post(name,title,post,image){
+function Post(name,title,post,image,imgPath){
     this.name = name;
     this.title = title;
     this.post = post;
     this.image = image;
+    this.imgPath = imgPath;
 }
 
 module.exports = Post;
@@ -28,7 +29,8 @@ Post.prototype.save = function(callback){
         time : time,
         title : this.title,
         post : this.post,
-        image : this.image
+        image : this.image,
+        imgPath : this.imgPath
     }
     //代开数据库
     mongodb.open(function(err,db){

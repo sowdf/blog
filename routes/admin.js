@@ -6,7 +6,7 @@ var Admin = require('../modules/admin'),
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb){
-    cb(null, './public/images')
+    cb(null, './public/artimage')
   },
   filename: function (req, file, cb){
     var fileName = file.originalname;
@@ -130,7 +130,6 @@ module.exports = function(app){
   });
   app.post('/upload', checkLogin);
   app.post('/upload',upload.array('field1', 5), function (req, res) {
-    console.log(req.files);
     req.flash('success', '文件上传成功!');
     res.redirect('/upload');
   });
@@ -143,10 +142,10 @@ module.exports = function(app){
     });
   });
   app.post('/post',checkLogin);
-  app.post('/post',function(req,res){
+  app.post('/post',upload.array('field1', 5),function(req,res){
     var currentAdmin = req.session.admin,
-        post = new Post(currentAdmin.name,req.body.title,req.body.post,req.body.image);
-    console.log(req.files);
+        imgPath = '/artimage/' + req.files[0].originalname,
+        post = new Post(currentAdmin.name,req.body.title,req.body.post,req.body.image,imgPath);
     post.save(function(err){
       if(err){
         req.flash('error',err);

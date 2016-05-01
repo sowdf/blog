@@ -8,7 +8,7 @@
     <p><%-post.post%></p>
     <%if(post.image){ %>
         <div>
-            <img src="<%=JSON.parse(post.image).base64%>" alt="" />
+            <img src="<%=post.imgPath%>" alt="" />
         </div>
     <%}%>
 <%})%>
