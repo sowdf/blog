@@ -144,7 +144,7 @@ module.exports = function(app){
   app.post('/post',checkLogin);
   app.post('/post',upload.array('field1', 5),function(req,res){
     var currentAdmin = req.session.admin,
-        imgPath = '/artimage/' + req.files[0].originalname,
+        imgPath = 'http://srs.sowdf.com/' + req.files[0].originalname,
         post = new Post(currentAdmin.name,req.body.title,req.body.post,req.body.image,imgPath);
     post.save(function(err){
       if(err){
