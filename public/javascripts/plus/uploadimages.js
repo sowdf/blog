@@ -6,7 +6,7 @@ function init() {
     input: document.querySelector('.input'),
     callback: function (base64) {
       var oImg = document.getElementById('j_img');
-      var imageDate = {'imageNmae':this.fileName,size:this.tw + '*' + this.th,fileSize:(this.fileSize / 1024).toFixed(2) + 'KB',base64:base64};
+      var imageDate = {'imageNmae':this.fileName,size:this.tw + '*' + this.th,fileSize:(this.fileSize / 1024).toFixed(2) + 'KB'};
       var date = JSON.stringify(imageDate);
       oImg.value = date;
       var html = '';
